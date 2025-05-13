@@ -58,3 +58,7 @@ gem "factory_bot", "~> 6.5"
 gem "faker", "~> 3.5"
 
 gem "kaminari", "~> 1.2"
+
+gem "jwt", "~> 2.10"
+
+gem "bcrypt", "~> 3.1"
