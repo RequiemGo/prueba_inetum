@@ -51,7 +51,7 @@ group :development, :test do
 end
 
 gem "graphql"
-
+gem "active_model_serializers"
 
 gem "factory_bot", "~> 6.5"
 
