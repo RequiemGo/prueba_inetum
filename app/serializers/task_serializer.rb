@@ -1,3 +1,4 @@
 class TaskSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :title, :description, :status, :due_date
+  belongs_to :user
 end
