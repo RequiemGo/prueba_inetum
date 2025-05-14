@@ -1,5 +1,7 @@
 # README
 
+repo: https://github.com/RequiemGo/prueba_inetum
+
 **NOTA:** Para generar el token usar el email de "andres.castillo@inetum.com" y la contraseña de "password" (sin comillas)
 
 La Documentación del API está en la parte final del readme
@@ -15,6 +17,7 @@ API en Rails 8 con autenticación JWT (creada co la gema **jwt** y **bcrypt**), 
 Para levantar la app localmente usando Docker:
 
 ```bash
+docker compose build 
 docker compose up --build
 ```
 Eso construye la imagen y arranca dos servicios:
@@ -38,6 +41,33 @@ Para acceder a la consola Rails:
 
 ```bash
 docker compose exec web rails console
+```
+
+## ⚠️ Problema común con permisos en archivos `bin/*`
+
+Si al intentar entrar a la consola Rails te aparece un error como este:
+
+exec: "bin/rails": permission denied: unknown
+
+o algo similar con otros archivos del directorio `bin/`, es porque al comprimir y descomprimir el proyecto (por ejemplo en `.zip` o `.7z`) se pueden perder los permisos de ejecución.
+
+### ✅ Solución rápida
+
+Ejecuta este comando desde la raíz del proyecto (fuera del contenedor):
+
+```bash
+chmod +x bin/*
+```
+
+Luego vuelve a construir:
+
+```bash
+docker compose build
+```
+Y ahora sí, ya puedes entrar a la consola sin problema:
+
+```bash
+docker compose exec web bin/rails console
 ```
 ### 🧪 Cómo correr las pruebas
 
