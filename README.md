@@ -1,4 +1,7 @@
 # README
+
+**NOTA:** Para generar el token usar el email de "andres.castillo@inetum.com" y la contraseña de "password" (sin comillas)
+
 # Backend User Task API
 
 API en Rails 8 con autenticación JWT (creada co la gema **jwt** y **bcrypt**), tareas y usuarios. Incluye endpoints REST y también soporte para GraphQL.
