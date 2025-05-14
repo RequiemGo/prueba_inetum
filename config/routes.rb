@@ -3,9 +3,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       post   "login",  to: "sessions#create"
       delete "logout", to: "sessions#destroy"
-      resources :users,  only: %i[index show] do
-        resources :tasks, only: %i[index], module: :users
+      resources :users do
+      namespace :users do
+        resources :tasks, only: %i[index create]
       end
+    end
       resources :tasks
     end
   end
