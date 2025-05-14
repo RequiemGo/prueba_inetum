@@ -5,5 +5,6 @@ module Types
     field :description, String, null: false
     field :status, String, null: false
     field :due_date, GraphQL::Types::ISO8601Date, null: false
+    field :user, Types::UserType, null: false
   end
 end
