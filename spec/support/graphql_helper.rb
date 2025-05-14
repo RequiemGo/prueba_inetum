@@ -1,9 +1,9 @@
 module GraphQLHelper
   def gql(query, variables: {}, headers: {})
-    payload = { query:, variables: variables }        # ← Hash Ruby
+    payload = { query:, variables: variables }
 
     post '/graphql',
-         params:  payload.to_json,                    # ← JSON string
+         params:  payload.to_json,
          headers: headers.merge('Content-Type' => 'application/json')
 
     JSON.parse(response.body, symbolize_names: true)

@@ -8,6 +8,10 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+User.create!(email: "andres.castillo@inetum.com",
+              name: "Andres",
+              role: 1,
+              password: "password")
 
 10.times do
   user = User.create!(email: Faker::Internet.unique.email,
