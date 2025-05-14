@@ -22,8 +22,18 @@ module Types
     # They will be entry points for queries on your schema.
 
     field :users, [ Types::UserType ], null: false
+
+    def users
+      User.all
+    end
+
+
     field :tasks, [ Types::TaskType ], null: false do
       argument :status, String, required: false
+    end
+
+    def tasks(status: nil)
+      status ? Task.where(status: status) : Task.all
     end
   end
 end
