@@ -12,7 +12,8 @@
 10.times do
   user = User.create!(email: Faker::Internet.unique.email,
                       name: Faker::Name.name,
-                      role: :basic)
+                      role: :user,
+                      password: Faker::Internet.password(min_length: 6))
 
   rand(2..6).times do
     user.tasks.create!(title: Faker::Lorem.sentence,
