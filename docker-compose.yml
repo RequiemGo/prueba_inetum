@@ -1,0 +1,48 @@
+version: "3.9"
+
+networks:
+  backend_net:
+    driver: bridge
+
+volumes:
+  pgdata:
+    driver: local
+
+services:
+  #  PostgreSQL
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER:  rails
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: backend_user_task_api_development
+    volumes:
+      - pgdata:/var/lib/postgresql/data 
+    networks:
+      - backend_net
+
+  # ---------- Rails API ----------
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile            
+      args:
+        RAILS_ENV: development
+    command: >
+      bash -c "
+        bundle exec rails db:prepare &&
+        bundle exec rails s -b 0.0.0.0 -p 3000
+      "
+    environment:
+      RAILS_ENV:  development
+      DATABASE_URL: postgres://rails:secret@db:5432/backend_user_task_api_development
+      # RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+    volumes:
+      - .:/rails
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    networks:
+      - backend_net
