@@ -48,12 +48,12 @@ group :development, :test do
   gem "bullet"
   gem "pry"
   gem 'rspec-rails', '~> 8.0.0'
+  gem "factory_bot_rails"
 end
 
 gem "graphql"
 gem "active_model_serializers"
 
-gem "factory_bot", "~> 6.5"
 
 gem "faker", "~> 3.5"
 
